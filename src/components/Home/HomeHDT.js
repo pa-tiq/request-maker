@@ -2,10 +2,10 @@ import React, { useContext, useEffect, useState } from 'react';
 import { LicenceContext } from '../../store/licence-context';
 import classes from './Home.module.css';
 
-const Home = () => {
+const HomeHDT = () => {
   const licenceContext = useContext(LicenceContext);
 
-  const [ticketId, setTicketId] = useState(6273);
+  const [ticketId, setTicketId] = useState(50);
   const [makeRequest, setMakeRequest] = useState(true);
 
   const tickedIdChangeHandler = (e) => {
@@ -24,7 +24,7 @@ const Home = () => {
 
   useEffect(() => {
     async function getLicences() {
-      await licenceContext.fetchLicences(ticketId);
+      await licenceContext.fetchHDT(ticketId);
     }
     if (makeRequest) {
       getLicences();
@@ -34,11 +34,13 @@ const Home = () => {
 
   let results = <h3>Nada ainda</h3>;
 
-  if (licenceContext.licences) {
+  if (licenceContext.userData) {
     let coisas = [];
-    for (const [key, value] of Object.entries(licenceContext.licences)) {
-      coisas.push({ key, value });
-    }
+    licenceContext.userData.forEach((item) => {
+      for (const [key, value] of Object.entries(item)) {
+        coisas.push({ key, value });
+      }
+    });
     results = (
       <>
         {coisas.map((item, idx) => {
@@ -48,7 +50,7 @@ const Home = () => {
                 typeof item.value === 'object' && item.value
                   ? Object.entries(item.value)
                   : item.value
-              }`}</h3>{' '}
+              }`}</h3>
             </div>
           );
         })}
@@ -59,7 +61,7 @@ const Home = () => {
   return (
     <section className={classes.homepage}>
       <div className={classes.home}>
-        <label>Ticket ID</label>
+        <label>User ID</label>
         <input
           type='number'
           onChange={tickedIdChangeHandler}
@@ -75,4 +77,4 @@ const Home = () => {
   );
 };
 
-export default Home;
+export default HomeHDT;

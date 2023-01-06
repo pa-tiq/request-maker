@@ -12,9 +12,9 @@ const MainHeader = () => {
               className={({ isActive }) =>
                 isActive ? classes.active : undefined
               }
-              to='/home'
+              to='/ticket'
             >
-              Home
+              Ticket
             </NavLink>
           </li>
           <li>
@@ -22,19 +22,9 @@ const MainHeader = () => {
               className={({ isActive }) =>
                 isActive ? classes.active : undefined
               }
-              to='/users'
+              to='/HDT'
             >
-              Users
-            </NavLink>
-          </li>
-          <li>
-            <NavLink
-              className={({ isActive }) =>
-                isActive ? classes.active : undefined
-              }
-              to='/admin'
-            >
-              Admin
+              HDT
             </NavLink>
           </li>
         </Fragment>
@@ -45,6 +35,7 @@ const MainHeader = () => {
   return (
     <header className={classes.header}>
       <h1>Request maker</h1>
+      {navigation}
     </header>
   );
 };
