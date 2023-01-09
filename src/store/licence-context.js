@@ -2,26 +2,27 @@ import { createContext, useState } from 'react';
 import useHttp from '../hooks/use-http';
 
 export const LicenceContext = createContext({
-  licences: {},
+  ticket: {},
   userData: [],
   isLoading: false,
   error: null,
-  fetchLicences: async (ticketId) => {},
+  fetchTicket: async (ticketId) => {},
   fetchHDT: async (userId) => {},
 });
 
 const LicenceContextProvider = (props) => {
   const httpObj = useHttp();
-  const [licences, setLicences] = useState({});
+  const [ticket, setTicket] = useState({});
   const [userData, setUserData] = useState([]);
 
-  const fetchLicences = async (ticketId) => {
+  const fetchTicket = async (ticketId) => {
     let ticket = ticketId ? ticketId : 6273
     const requestConfig = {
       url: `https://zoo.cigs.eb.mil.br/apiticket/find/${ticket}`,
+      //url: `https://zoo.cigs.eb.mil.br/api/institutions/find/${ticket}`,
     };
     const updateLicences = (newFiles) => {
-      setLicences(newFiles);
+      setTicket(newFiles);
     };
     httpObj.sendRequest(requestConfig, updateLicences);
   };  
@@ -44,11 +45,11 @@ const LicenceContextProvider = (props) => {
   return (
     <LicenceContext.Provider
       value={{
-        licences: licences,
+        ticket: ticket,
         userData: userData,
         isLoading: httpObj.isLoading,
         error: httpObj.error,
-        fetchLicences: fetchLicences,
+        fetchTicket: fetchTicket,
         fetchHDT: fetchHDT,
       }}
     >

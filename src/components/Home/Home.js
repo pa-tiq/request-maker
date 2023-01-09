@@ -23,20 +23,20 @@ const Home = () => {
   };
 
   useEffect(() => {
-    async function getLicences() {
-      await licenceContext.fetchLicences(ticketId);
+    async function getTicket() {
+      await licenceContext.fetchTicket(ticketId);
     }
     if (makeRequest) {
-      getLicences();
+      getTicket();
       setMakeRequest(false);
     }
   }, [makeRequest]);
 
   let results = <h3>Nada ainda</h3>;
 
-  if (licenceContext.licences) {
+  if (licenceContext.ticket) {
     let coisas = [];
-    for (const [key, value] of Object.entries(licenceContext.licences)) {
+    for (const [key, value] of Object.entries(licenceContext.ticket)) {
       coisas.push({ key, value });
     }
     results = (
