@@ -18,7 +18,7 @@ const LicenceContextProvider = (props) => {
   const fetchTicket = async (ticketId) => {
     let ticket = ticketId ? ticketId : 6273
     const requestConfig = {
-      url: `https://zoo.cigs.eb.mil.br/apiticket/find/${ticket}`,
+      url: `https://zoocigs.eb.mil.br/apiticket/find/${ticket}`,
       //url: `https://zoo.cigs.eb.mil.br/api/institutions/find/${ticket}`,
     };
     const updateLicences = (newFiles) => {
@@ -30,10 +30,13 @@ const LicenceContextProvider = (props) => {
   const fetchHDT = async (userId) => {
     let id = userId ? userId : 50
     const requestConfig = {
-      url: `https://zoo.cigs.eb.mil.br/api/reservations/user/${id}`,
+      //url: `https://zoocigs.eb.mil.br/api/reservations/user/${id}`,
+      url: `https://zoocigs.eb.mil.br/api/v1/user/${id}`,
       headers: {
-        Accept : 'application/json, text/plain, */*',
-        Authorization: 'Bearer ' + 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjUwLCJsb2dpbiI6IjEyMzQ1Njc4OTkiLCJuYW1lIjoiU1NJIFNTSSIsImZpcnN0QWNjZXNzIjpmYWxzZSwicm9sZUlkIjo0LCJpYXQiOjE2NzMwMTg3MjAsImV4cCI6MTY3MzAyMjMyMH0.Dpv2_Kcl6mPuJXV4_dMxTPNSfiqpo6LgKpqOtfkrQfQ',
+        Accept: 'application/json, text/plain, */*',
+        Authorization:
+          'Bearer ' +
+          'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjYyLCJsb2dpbiI6IjEyMzQ1Njc4OTkiLCJuYW1lIjoiU1NJU1NJIiwiZmlyc3RBY2Nlc3MiOmZhbHNlLCJyb2xlSWQiOjQsImlhdCI6MTY4Nzk2NTQ0MCwiZXhwIjoxNjg3OTY5MDQwfQ.scM1l2fKGhzyL7RIK7Ac9asvCZhPN2L-I5Nb2XhUKPg',
       },
     };
     const updateLicences = (newFiles) => {

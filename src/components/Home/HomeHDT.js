@@ -36,7 +36,9 @@ const HomeHDT = () => {
 
   if (licenceContext.userData) {
     let coisas = [];
-    licenceContext.userData.forEach((item) => {
+    console.log(licenceContext.userData)
+    let iterableUserData = Object.entries(licenceContext.userData);
+    iterableUserData.forEach((item) => {
       for (const [key, value] of Object.entries(item)) {
         coisas.push({ key, value });
       }
